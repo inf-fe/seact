@@ -1,0 +1,12 @@
+.react-container{
+    padding: 10px;
+    border: 1px solid brown;
+}
+.san-app{
+    padding: 10px;
+    border: 1px solid green;
+}
+.san-app-child{
+    padding: 10px;
+    border: 1px solid burlywood;
+}
