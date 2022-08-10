@@ -6,14 +6,14 @@
 
 - [x] props
 - [x] event
-- [x] children
 - [x] 双向绑定
-- [x] slot
+- [x] children
+- [] ref
 
 ### san in react
 
 - [x] props
 - [x] event
-- [x] children
 - [x] 双向绑定
 - [x] slot
+- [] ref

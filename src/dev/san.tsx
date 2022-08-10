@@ -118,6 +118,7 @@ const React4 = () => {
       </SanInReactApp2> */}
       <div>value:{value}</div>
       <input value={value} onChange={e => setValue(e.target.value)}></input>
+      <div>{( Number(value) > 333).toString()}</div>
       <SanInReactApp3 sModels={{
         value: [value, setValue]
       }}>
