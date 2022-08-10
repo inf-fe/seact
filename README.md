@@ -8,7 +8,7 @@
 - [x] event
 - [x] 双向绑定
 - [x] children
-- [] ref
+- [ ] ref
 
 ### san in react
 
@@ -16,4 +16,4 @@
 - [x] event
 - [x] 双向绑定
 - [x] slot
-- [] ref
+- [ ] ref
