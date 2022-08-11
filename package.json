@@ -4,6 +4,7 @@
   "main": "lib/seact.umd.js",
   "module": "lib/seact.es.js",
   "license": "MIT",
+  "types": "types/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

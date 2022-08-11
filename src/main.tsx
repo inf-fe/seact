@@ -1,19 +1,5 @@
 import ReactDOM from 'react-dom/client'
-// import SanInReactExample from './example/SanInReactExample'
-// import './dev/san'
-// import './example/ReactInSanExample'
 
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//     <SanInReactExample />
-// )
-
-// import './dev'
-// import './dev/index2'
-// import './dev/slot'
-// import './dev/react'
-// import './dev/slot2'
-import demo1 from './example/ReactInSanExample'
-import demo2 from './example/SanInReactExample'
 import ReactInSanProps from './example/ReactInSan/props'
 import ReactInSanEvent from './example/ReactInSan/event'
 import ReactInSanModel from './example/ReactInSan/model'
@@ -24,10 +10,8 @@ import SanInReactEvent from './example/SanInReact/event'
 import SanInReactModel from './example/SanInReact/model'
 import SanInReactSlot from './example/SanInReact/slot'
 
-let reactRoot = null// ReactDOM.createRoot(document.getElementById('root'))
+let reactRoot = null
 const viewPath = {
-    '/demo1': demo1,
-    '/demo2': demo2,
     '/react-in-san/props': ReactInSanProps,
     '/react-in-san/event': ReactInSanEvent,
     '/react-in-san/model': ReactInSanModel,
