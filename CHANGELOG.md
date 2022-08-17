@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.1.1(2022-8-17)
+## 0.2.0(2022-8-17)
 
 breaking chagnes
 
