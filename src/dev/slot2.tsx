@@ -1,6 +1,6 @@
 import san from 'san'
 import ReactDOM from 'react-dom/client'
-import { ReactInSan } from '../lib/ReactInSan'
+import { reactInSan } from '../lib/reactInSan'
 
 function getChildrenANode(children) {
     return children.map(v => v.aNode)
@@ -101,7 +101,7 @@ const SanApp3 = san.defineComponent({
     `
 })
 // const SanAppNew = GenerateComponent()
-const SanAppNew = ReactInSan(Child)
+const SanAppNew = reactInSan(Child)
 const SanApp = san.defineComponent({
     name: 'parent',
     template: /*html*/`

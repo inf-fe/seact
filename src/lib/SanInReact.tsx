@@ -2,7 +2,7 @@ import React, { ReactNode, Component as ReactComponent } from 'react'
 import san, { Component as SanComponent } from 'san'
 import { getId, firstLetterDowncase, REACT_ELEMENT, aNodeGen, defaultSlotGen, namedSlotGen } from '../util'
 import { omit, forOwn } from 'lodash'
-import { ReactInSan } from './ReactInSan'
+import { reactInSan } from './reactInSan'
 type TPropsChildren = {
   [key: string]: ReactNode
 }
@@ -40,14 +40,14 @@ function Container<T>(SanComponent) {
         Object.keys(this.propsChildren as TPropsChildren).forEach((key) => {
           if (key === 'default') {
             aNode.children[0].children.push(defaultSlotGen())
-            this.sanAppComponents['san-child-default'] = ReactInSan()
+            this.sanAppComponents['san-child-default'] = reactInSan()
           } else {
             aNode.children[0].children.push(namedSlotGen(key))
-            this.sanAppComponents[`san-child-${key}`] = ReactInSan()
+            this.sanAppComponents[`san-child-${key}`] = reactInSan()
           }
         })
       }
-      // * san-app 调用 SanInReact 的参数
+      // * san-app 调用 sanInReact 的参数
       const SanContainer = san.defineComponent({
         aNode,
         components: {
@@ -107,9 +107,9 @@ function Container<T>(SanComponent) {
   }
 }
 
-export function SanInReact<T>(SanComponent) {
+export function sanInReact<T>(SanComponent) {
   if (!SanComponent) {
-    console.warn('Component must be passed in SanInReact!')
+    console.warn('Component must be passed in sanInReact!')
   }
   return Container<T>(SanComponent)
 }

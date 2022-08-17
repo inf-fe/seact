@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import React, { useState } from 'react'
 import san from 'san'
-import { ReactInSan } from '../lib/ReactInSan'
+import { reactInSan } from '../lib/reactInSan'
 
 const ReactApp = ({ children }) => {
     console.log('children', children)
@@ -9,7 +9,7 @@ const ReactApp = ({ children }) => {
         <div>children:{children}</div>
     )
 }
-const ReactAppInSan = ReactInSan(ReactApp)
+const ReactAppInSan = reactInSan(ReactApp)
 const SanApp2 = san.defineComponent({
     template: /* html */`
         <p><slot/></p>

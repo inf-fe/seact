@@ -2,7 +2,7 @@ import san from 'san'
 import React, { ComponentType as ReactComponentType } from 'react'
 import ReactDOM from 'react-dom/client'
 import { kebabCaseToCamelCase, kebabCaseToPascalCase, REACT_ELEMENT } from '../util'
-import { SanInReact } from './SanInReact'
+import { sanInReact } from './sanInReact'
 
 function Container(ReactComponent) {
   return class ReactInSanContainer extends san.Component {
@@ -28,7 +28,7 @@ function Container(ReactComponent) {
           owner: this.parentComponent,
           source: sourceGen(this)
         })
-        this.childrenComponent = SanInReact(slot)
+        this.childrenComponent = sanInReact(slot)
       }
       this.reactDOMRoot = ReactDOM.createRoot(this.el as HTMLElement)
       this.render()
@@ -58,7 +58,7 @@ function Container(ReactComponent) {
   }
 }
 
-export const ReactInSan = (ReactComponent?: ReactComponentType<any>) => {
+export const reactInSan = (ReactComponent?: ReactComponentType<any>) => {
   // 不用判断是否传了值
   return Container(ReactComponent)
 }

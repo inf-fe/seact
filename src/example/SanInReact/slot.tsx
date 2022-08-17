@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { defineComponent } from 'san'
-import { SanInReact } from '../../lib/SanInReact'
+import { sanInReact } from '../../lib/sanInReact'
 
 const SanApp = defineComponent({
     template: /*html*/`
         <div><slot/><slot name="slot"/></div>
     `,
 })
-const SanAppInReact = SanInReact(SanApp)
+const SanAppInReact = sanInReact(SanApp)
 const ReactApp = () => {
     const [count, setCount] = useState(1)
     return (

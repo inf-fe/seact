@@ -1,5 +1,5 @@
 import san from 'san'
-import { ReactInSan } from '../lib/ReactInSan'
+import { reactInSan } from '../lib/reactInSan'
 
 const ReactApp = ({ propsValue, propsValueChange }) => {
     return (
@@ -19,8 +19,8 @@ const ReactApp2 = ({ count, countChange }) => {
         </div>
     )
 }
-const ReactAppInSan = ReactInSan(ReactApp)
-const ReactAppInSan2 = ReactInSan(ReactApp2)
+const ReactAppInSan = reactInSan(ReactApp)
+const ReactAppInSan2 = reactInSan(ReactApp2)
 const SanApp = san.defineComponent({
     template:/*html*/`
         <div>

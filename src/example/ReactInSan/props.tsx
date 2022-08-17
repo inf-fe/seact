@@ -1,6 +1,6 @@
 import { defineComponent } from 'san'
 import React from 'react'
-import { ReactInSan } from '../../lib/ReactInSan'
+import { reactInSan } from '../../lib/reactInSan'
 const ReactApp = ({ count }) => (
     <div>props value:{count}</div>
 )
@@ -13,7 +13,7 @@ export default defineComponent({
         <div>
     `,
     components: {
-        'react-app': ReactInSan(ReactApp)
+        'react-app': reactInSan(ReactApp)
     },
     initData() {
         return {

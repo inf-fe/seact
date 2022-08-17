@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { defineComponent } from 'san'
-import { SanInReact } from '../../lib/SanInReact'
+import { sanInReact } from '../../lib/sanInReact'
 
 interface SanAppInReactProps{
     count: number
@@ -11,7 +11,7 @@ const SanApp = defineComponent({
         <div>props value:{{count}}</div>
     `
 })
-const SanAppInReact = SanInReact<SanAppInReactProps>(SanApp)
+const SanAppInReact = sanInReact<SanAppInReactProps>(SanApp)
 const ReactApp = () => {
     const [count, setCount] = useState(1)
     return (

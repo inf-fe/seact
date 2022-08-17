@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import san from 'san'
-import { SanInReact } from '../lib/SanInReact'
+import { sanInReact } from '../lib/sanInReact'
 
 const SanApp = san.defineComponent({
     template:/*html*/`
@@ -23,8 +23,8 @@ const SanApp2 = san.defineComponent({
         </div>
     `,
 })
-const SanAppInReact = SanInReact(SanApp)
-const SanAppInReact2 = SanInReact(SanApp2)
+const SanAppInReact = sanInReact(SanApp)
+const SanAppInReact2 = sanInReact(SanApp2)
 
 function ReactApp() {
     const [value, setValue] = useState(10)

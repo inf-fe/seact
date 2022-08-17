@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import san from 'san'
-import { SanInReact } from '../lib/SanInReact'
+import { sanInReact } from '../lib/sanInReact'
 
 const SanApp = san.defineComponent({
     template:/*html*/`
@@ -18,7 +18,7 @@ const SanApp = san.defineComponent({
     }
 })
 
-const SanAppInReact = SanInReact(SanApp)
+const SanAppInReact = sanInReact(SanApp)
 const ReactApp2 = () => {
     return (
         <div>

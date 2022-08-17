@@ -1,2 +1,2 @@
-export { ReactInSan } from './ReactInSan'
-export { SanInReact } from './SanInReact'
+export { reactInSan } from './reactInSan'
+export { sanInReact } from './sanInReact'

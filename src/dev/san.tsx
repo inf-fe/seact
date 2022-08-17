@@ -1,7 +1,7 @@
 import san, { defineComponent } from 'san'
 import ReactDOM from 'react-dom/client'
 import React, { useState } from 'react'
-import { SanInReact } from '../lib/SanInReact'
+import { sanInReact } from '../lib/sanInReact'
 const temp = san.defineComponent({
   template: '<a>temp</a>'
 })
@@ -63,8 +63,8 @@ const SanApp = defineComponent({
 const React1 = ({ value }) => {
   return <div>1:{value}</div>
 }
-const SanInReactApp2 = SanInReact(SanApp2)
-const SanInReactApp3 = SanInReact(SanApp3)
+const SanInReactApp2 = sanInReact(SanApp2)
+const SanInReactApp3 = sanInReact(SanApp3)
 
 const React2 = () => {
   // const value = 3333
