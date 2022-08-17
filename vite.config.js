@@ -16,7 +16,7 @@ export default defineConfig(({ command }) => {
         outDir: 'lib',
         rollupOptions: {
           // 请确保外部化那些你的库中不需要的依赖
-          external: ['react', 'san', 'react-dom']
+          external: ['react', 'san', 'react-dom/client']
         },
         lib: {
           entry: resolve(__dirname, './src/lib/index.tsx'),
