@@ -1,7 +1,7 @@
 import React, { ReactNode, Component as ReactComponent } from 'react'
 import san, { Component as SanComponent } from 'san'
 import { getId, firstLetterDowncase, REACT_ELEMENT, aNodeGen, defaultSlotGen, namedSlotGen } from '../util'
-import { omit, forOwn } from 'lodash'
+import { omit, forOwn } from 'lodash-es'
 import { reactInSan } from './reactInSan'
 type TPropsChildren = {
   [key: string]: ReactNode
