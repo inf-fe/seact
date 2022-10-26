@@ -23,7 +23,7 @@ npm i @inf-fe/seact
 
 ## 案例
 
-[案例]https://github.com/inf-fe/seact/tree/main/src/example
+[案例](https://github.com/inf-fe/seact/tree/main/src/example)
 
 ## License
 
