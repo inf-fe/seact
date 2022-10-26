@@ -21,6 +21,10 @@ Seact 是一个工具库，可以使 React 和 San 组件相互调用对方。
 npm i @inf-fe/seact
 ```
 
+## 案例
+
+[案例]https://github.com/inf-fe/seact/tree/main/src/example
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
