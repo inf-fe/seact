@@ -1,6 +1,6 @@
 {
   "name": "@inf-fe/seact",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "main": "lib/seact.umd.js",
   "module": "lib/seact.es.js",
   "license": "MIT",
@@ -12,7 +12,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.21"
+  },
+  "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "san": "^3.12.0"

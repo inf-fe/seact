@@ -66,11 +66,11 @@ function getBind(self) {
   const bindObj = {}
   // TODO 属性为slot的时候，parent.data是空的，不知道是为啥
   for (const item of self.binds.filter(v => v.name !== 'slot')) {
-    bindObj[item.name] = self.parent.data.get(item.expr)
+    bindObj[item.name] = self.parentComponent.data.get(item.expr)
     // react 调用 {变量名}Change 的函数修改变量
     // TODO react 事件转为原始事件
     bindObj[`${item.name}Change`] = (...porps) => {
-      self.parent.data.set(item.expr, ...porps)
+      self.parentComponent.data.set(item.expr, ...porps)
     }
   }
   return bindObj
