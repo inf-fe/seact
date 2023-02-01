@@ -1,3 +1,6 @@
+import React from 'react'
+import { omit, forOwn } from 'lodash-es'
+
 let id = 0
 export const getId = () => {
   return ++id
@@ -43,7 +46,7 @@ export function firstLetterDowncase(str) {
   return str.charAt(0).toLowerCase() + str.slice(1)
 }
 export const REACT_ELEMENT = '__$ReactElement'
-type TANodeGen = () => {
+type TANodeGen = (self: any) => {
   children: [{
     children: any[],
     directives: {
@@ -54,33 +57,79 @@ type TANodeGen = () => {
         }
       }
     },
-    events: [],
-    props: [],
+    events: any[],
+    props: any[],
     tagName: string
   }],
   directives: {},
   events: [],
   props: []
 }
-export const aNodeGen: TANodeGen = () => ({
-  children: [{
-    children: [],
-    directives: {
-      ref: {
-        value: {
-          type: 1,
-          value: 'sanApp'
-        }
+export const aNodeGen: TANodeGen = (self) => {
+  const props = Object.keys(getDataOnly(self)).map((key) => {
+    return {
+      name: key,
+      expr: {
+        type: ExprType.ACCESSOR,
+        paths: [
+          {
+            type: ExprType.STRING,
+            value: key
+          }
+        ]
       }
-    },
+    }
+  })
+  const events = Object.keys(getEvent(self)).map((key) => {
+    return {
+      name: key,
+      modifier: {},
+      expr: {
+        type: ExprType.CALL,
+        name: {
+          type: ExprType.ACCESSOR,
+          paths: [
+            {
+              type: ExprType.STRING,
+              value: key
+            }
+          ]
+        },
+        args: [
+          {
+            type: ExprType.ACCESSOR,
+            paths: [
+              {
+                type: ExprType.STRING,
+                value: "$event"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  })
+  return {
+    children: [{
+      children: [],
+      directives: {
+        ref: {
+          value: {
+            type: 1,
+            value: 'sanApp'
+          }
+        }
+      },
+      events,
+      props,
+      tagName: 'san-app'
+    }],
+    directives: {},
     events: [],
-    props: [],
-    tagName: 'san-app'
-  }],
-  directives: {},
-  events: [],
-  props: []
-})
+    props: []
+  }
+}
+// TODO 插槽是否也需要处理props和event来保证初始化时和san一致？
 export const defaultSlotGen = () => ({
   children: [],
   directives: {
@@ -115,6 +164,38 @@ export const namedSlotGen = (key: string) => ({
   }],
   tagName: `san-child-${key}`
 })
+// 事件也一起传进来，不过滤
+export function getData(self) {
+  const obj = {}
+  if (self.props.sModels) {
+    forOwn(self.props.sModels, (value, key) => {
+      obj[key] = value[0]
+    })
+  }
+  return { ...omit(self.props, ['sModels', 'children']), ...obj }
+}
+export function getDataOnly(self) {
+  const obj = {}
+  if (self.props.sModels) {
+    forOwn(self.props.sModels, (value, key) => {
+      obj[key] = value[0]
+    })
+  }
+  const eventKeys = Object.keys(self.props).filter(v => v.startsWith('on'))
+  return { ...omit(self.props, ['sModels', 'children', ...eventKeys]), ...obj }
+}
+export function getEvent(self) {
+  return Object.keys(self.props).reduce((acc, cur) => {
+    if (cur.startsWith('on')) {
+      acc[firstLetterDowncase(cur.slice(2))] = self.props[cur]
+    }
+    return acc
+  }, {})
+}
+export function isNormalObject(children) {
+  return !Array.isArray(children) && !React.isValidElement(children) && children instanceof Object
+}
+
 /**
  * UnionToIntersection<{ foo: string } | { bar: string }> =
  *  { foo: string } & { bar: string }.

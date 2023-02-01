@@ -1,14 +1,24 @@
 import React, { ReactNode, Component as ReactComponent } from 'react'
 import san, { Component as SanComponent } from 'san'
-import { getId, firstLetterDowncase, REACT_ELEMENT, aNodeGen, defaultSlotGen, namedSlotGen } from '../util'
-import { omit, forOwn } from 'lodash-es'
+import {
+  getId,
+  REACT_ELEMENT,
+  aNodeGen,
+  defaultSlotGen,
+  namedSlotGen,
+  isNormalObject,
+  getData,
+  getDataOnly,
+  getEvent
+} from '../util'
+import { forOwn } from 'lodash-es'
 import { reactInSan } from './reactInSan'
 type TPropsChildren = {
   [key: string]: ReactNode
 }
 type Children = TPropsChildren | ReactNode
 interface IPropType {
-  children?:  any,
+  children?: any,
   sModels?: {
     [key: string]: [any, any]
   }
@@ -34,7 +44,7 @@ function Container<T>(SanComponent) {
       const self = this
       // TODO 去掉这一层div
       const node = document.querySelector(`.wrap-${this.id}`)
-      const aNode = aNodeGen()
+      const aNode = aNodeGen(self)
       setPropsChildren(this)
       if (isNormalObject(this.propsChildren)) {
         Object.keys(this.propsChildren as TPropsChildren).forEach((key) => {
@@ -54,6 +64,9 @@ function Container<T>(SanComponent) {
           'san-app': SanComponent,
           ...self.sanAppComponents
         },
+        initData() {
+          return getDataOnly(self)
+        },
         attached() {
           self.sanApp = this.ref('sanApp')
           // 直接控制sanApp，而不是通过 sanContainer控制
@@ -63,17 +76,13 @@ function Container<T>(SanComponent) {
               [REACT_ELEMENT]: <>{self.propsChildren?.[v.slice(10)]}</>
             })
           })
-          const eventObj = getEvent(self)
-          Object.keys(eventObj).forEach(key => {
-            self.sanApp.on(key, eventObj[key])
-          })
-
           if (self.props.sModels) {
             forOwn(self.props.sModels, (value, key) => {
               self.sanApp.watch(key, value[1])
             })
           }
-        }
+        },
+        ...getEvent(self)
       })
       this.sanAppContainer = typeof SanComponent === 'function' ? new SanContainer() : SanComponent
       this.sanAppContainer.attach(node as HTMLElement)
@@ -113,7 +122,7 @@ export function sanInReact<T>(SanComponent) {
   }
   return Container<T>(SanComponent)
 }
-function setPropsChildren(self){
+function setPropsChildren(self) {
   if (!isNormalObject(self.props.children) && self.props.children) {
     self.propsChildren = {
       default: self.props.children
@@ -121,25 +130,4 @@ function setPropsChildren(self){
   } else {
     self.propsChildren = self.props.children
   }
-}
-// 事件也一起传进来，不过滤
-function getData(self) {
-  const obj = {}
-  if (self.props.sModels) {
-    forOwn(self.props.sModels, (value, key) => {
-      obj[key] = value[0]
-    })
-  }
-  return { ...omit(self.props, ['sModels', 'children']), ...obj }
-}
-function getEvent(self) {
-  return Object.keys(self.props).reduce((acc,cur)=>{
-    if (cur.startsWith('on')) {
-      acc[firstLetterDowncase(cur.slice(2))] = self.props[cur]
-    }
-    return acc
-  },{})
-}
-function isNormalObject(children) {
-  return !Array.isArray(children) && !React.isValidElement(children) && children instanceof Object
 }
