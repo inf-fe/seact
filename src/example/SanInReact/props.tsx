@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { defineComponent,Component } from 'san'
+import React, { useState } from 'react'
+import { defineComponent } from 'san'
 import { sanInReact } from '../../lib/sanInReact'
 
 interface SanAppInReactProps {
@@ -18,7 +18,7 @@ const ReactApp = () => {
     return (
         <>
             <h1>san in react:props</h1>
-            <SanAppInReact count={count}/>
+            <SanAppInReact count={count} />
             <button onClick={() => setCount(count + 1)}>+1</button>
         </>
     )
