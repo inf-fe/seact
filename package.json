@@ -1,6 +1,6 @@
 {
   "name": "@inf-fe/seact",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "lib/seact.umd.js",
   "module": "lib/seact.es.js",
   "license": "MIT",

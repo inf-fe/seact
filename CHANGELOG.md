@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.4.2(2023-2-2)
+
+bug fixed
+
+* 兼容 3.7.9
+* sanInReact 中 div 修改类名
+
 ## 0.4.1(2023-2-1)
 
 bug fixed
