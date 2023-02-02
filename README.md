@@ -25,6 +25,14 @@ npm i @inf-fe/seact
 
 [案例](https://github.com/inf-fe/seact/tree/main/src/example)
 
+## 注意
+
+* sanInReact 中，san 挂载在一个类名是 seact-san-in-react-mount-container 的 div 标签中
+
+## TODO
+
+* 使用styled时效果与预期不符
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)

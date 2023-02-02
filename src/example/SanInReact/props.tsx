@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { defineComponent } from 'san'
+import { defineComponent,Component } from 'san'
 import { sanInReact } from '../../lib/sanInReact'
 
 interface SanAppInReactProps {
@@ -8,9 +8,10 @@ interface SanAppInReactProps {
 
 const SanApp = defineComponent({
     template: /*html*/`
-        <div on-click="click">props value:{{count}}</div>
+        <div>props value:{{count}}</div>
     `
 })
+
 const SanAppInReact = sanInReact<SanAppInReactProps>(SanApp)
 const ReactApp = () => {
     const [count, setCount] = useState(1)

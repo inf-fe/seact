@@ -17,7 +17,6 @@
     "san": "^3.x"
   },
   "devDependencies": {
-    "lodash-es": "^4.17.21",
     "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
@@ -28,6 +27,10 @@
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.1",
+    "lodash-es": "^4.17.21",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "san": "^3.12.2",
     "vite": "^2.9.9"
   }
 }

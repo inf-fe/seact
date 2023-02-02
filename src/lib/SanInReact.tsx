@@ -9,7 +9,8 @@ import {
   isNormalObject,
   getData,
   getDataOnly,
-  getEvent
+  getEvent,
+  dataAssign
 } from '../util'
 import { forOwn } from 'lodash-es'
 import { reactInSan } from './reactInSan'
@@ -43,7 +44,7 @@ function Container<T>(SanComponent) {
     componentDidMount() {
       const self = this
       // TODO 去掉这一层div
-      const node = document.querySelector(`.wrap-${this.id}`)
+      const node = document.querySelector(`.seact-san-in-react-mount-container-${this.id}`)
       const aNode = aNodeGen(self)
       setPropsChildren(this)
       if (isNormalObject(this.propsChildren)) {
@@ -70,9 +71,9 @@ function Container<T>(SanComponent) {
         attached() {
           self.sanApp = this.ref('sanApp')
           // 直接控制sanApp，而不是通过 sanContainer控制
-          self.sanApp.data.assign(getData(self))
+          dataAssign(self.sanApp, getData(self))
           Object.keys(self.sanAppComponents).forEach(v => {
-            this.ref(`${v}-ref`).data.assign({
+            dataAssign(this.ref(`${v}-ref`), {
               [REACT_ELEMENT]: <>{self.propsChildren?.[v.slice(10)]}</>
             })
           })
@@ -93,11 +94,11 @@ function Container<T>(SanComponent) {
     componentDidUpdate() {
       setPropsChildren(this)
       Object.keys(this.sanAppComponents).forEach(v => {
-        this.sanAppContainer.ref(`${v}-ref`).data.assign({
+        dataAssign(this.sanAppContainer.ref(`${v}-ref`),{
           [REACT_ELEMENT]: <>{this.propsChildren?.[v.slice(10)]}</>
         })
       })
-      this.sanApp.data.assign(getData(this))
+      dataAssign(this.sanApp, getData(this))
     }
 
     componentWillUnmount() {
@@ -107,7 +108,7 @@ function Container<T>(SanComponent) {
     render() {
       if (SanComponent) {
         return (
-          <div className={`wrap-${this.id}`}></div>
+          <div className={`seact-san-in-react-mount-container seact-san-in-react-mount-container-${this.id}`}></div>
         )
       } else {
         return null

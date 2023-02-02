@@ -249,3 +249,18 @@ export type Expand<T> = T extends (...args: infer A) => infer R
 //   ? { [K in keyof O]: ExpandRecursive<O[K]> }
 //   : never
 //   : T;
+
+export function dataAssign(self, source, option?: any) {
+  for (var key in source) { // eslint-disable-line
+    self.data.set(
+      {
+        type: ExprType.ACCESSOR,
+        paths: [
+          { type: ExprType.STRING, value: key }
+        ]
+      },
+      source[key],
+      option
+    );
+  }
+}
